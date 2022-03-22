@@ -31,6 +31,7 @@ describe('GET character routes', () => {
       .get('/api/v1/characters/7');
     expect(response.statusCode).toBe(200);
     expect(response.headers['content-type']).toEqual(expect.stringContaining('json'));
-    expect(response.body.id).toBeDefined();
+
+    expect(response.body.id).toEqual('7');
   });
 });
