@@ -10,4 +10,4 @@ CREATE TABLE characters (
     voice_actor JSON NOT NULL,
     about TEXT NOT NULL,
     photo_url TEXT NOT NULL
-)
+);
