@@ -16,11 +16,21 @@ describe('GET character routes', () => {
     pool.end();
   });
 
-  it('gets all characters from database', () => {
-    return request(app)
-      .get('/api/v1/characters')
-      .then((res) => {
-        expect(res.body).not.toBeNull();
-      });
+  it('GETs all characters', async () => {
+    const response = await request(app)
+      .get('/api/v1/characters');
+    expect(response.statusCode).toBe(200);
+    expect(response.headers['content-type']).toEqual(expect.stringContaining('json'));
+
+    // the response body must equal an array of objects
+    expect(response.body).toEqual(expect.arrayContaining([expect.any(Object)]));
+  });
+
+  it('GETs a single character by id', async () => {
+    const response = await request(app)
+      .get('/api/v1/characters/7');
+    expect(response.statusCode).toBe(200);
+    expect(response.headers['content-type']).toEqual(expect.stringContaining('json'));
+    expect(response.body.id).toBeDefined();
   });
 });
